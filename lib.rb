@@ -1,4 +1,3 @@
-# use UpdateAispeech.update_all
 module UpdateAispeech
 
   # ## 新域名或者ip地址
@@ -91,5 +90,3 @@ module UpdateAispeech
   end
 
 end
-
-UpdateAispeech.update_all
