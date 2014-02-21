@@ -74,7 +74,7 @@ module UpdateAispeech
 
   # ## 修改html文件例子中的ip地址
   def update_html
-     path = "/var/www/vhosts/test.aispeech.com/aispeechapi-js/v2.0/Examples"
+     path = "/var/www/vhosts/api.aispeech.com/aispeechapi-js/v2.0/Examples"
      new_url = "#{NEW_HOST}"
      shell_cmd = "sed -i -e s/#{old_url}/#{new_url}/ *"
 
