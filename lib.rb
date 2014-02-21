@@ -86,16 +86,12 @@ module UpdateAispeech
 
      File.write(
       "#{path}aipanel_ensent.html",
-      File.read("#{path}aipanel_ensent.html")
-        .sub(/([^\d]+)\d+\.\d+\.\d+\.\d+(.+)/, '\1' + "#{NEW_HOST}" + '\2')
-        )
+      File.read("#{path}aipanel_ensent.html").sub(/([^\d]+)\d+\.\d+\.\d+\.\d+(.+)/, '\1' + "#{NEW_HOST}" + '\2'))
      )
 
      File.write(
       "#{path}aipanel_enword.html",
-      File.read("#{path}aipanel_enword.html")
-        .sub(/([^\d]+)\d+\.\d+\.\d+\.\d+(.+)/, '\1' + "#{NEW_HOST}" + '\2')
-        )
+      File.read("#{path}aipanel_enword.html").sub(/([^\d]+)\d+\.\d+\.\d+\.\d+(.+)/, '\1' + "#{NEW_HOST}" + '\2'))
      )
 
      #shell_cmd = "sed -i -e s/#{old_url}/#{new_url}/ *"
