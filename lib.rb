@@ -89,4 +89,6 @@ module UpdateAispeech
     restart_service
   end
 
+  module_function :update_all
+
 end
