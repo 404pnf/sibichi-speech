@@ -32,8 +32,8 @@ module UpdateAispeech
   module_function :update_all
 
   # ## 此方法用来生成后面的方法
-  def gen_update(file, old, new)
-    File.write(file, File.read(file).sub(old, new))
+  def gen_update(file, old, newstr)
+    File.write(file, File.read(file).sub(old, newstr))
   end
 
   # ## 静态资源裁切
