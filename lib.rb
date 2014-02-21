@@ -4,11 +4,11 @@ module UpdateAispeech
   # 不要删除双引号
   # 不要写 'http://'
   # 您只需要修改这一行
-  new_host =  "192.168.23.105"
+  NEW_HOST =  "192.168.23.105"
   # 只有在你需要修改所有例子html中的域名时
   # 才需要写old_url
   # 因为如果不写我不知道从前的值是什么
-  old_url = '10.12.7.41'
+  OLD_URL = '10.12.7.41'
 
   # ## 修改IP
   # 假设需要修改的IP为192.168.0.1
@@ -29,7 +29,7 @@ module UpdateAispeech
     load_core = "/var/www/vhosts/api.aispeech.com/aispeechapi-js/v2.0/load_core.js"
     loadjs_host = Regexp.compile '^aispeech.host =.+;$'
     loadjs_monitorUrl = Regexp.compile '^aispeech.monitorUrl =.+;$'
-    loadjs_new_pattern = "http://#{new_host}"
+    loadjs_new_pattern = "http://#{NEW_HOST}"
 
     gen_update(load_core, loadjs_host, loadjs_new_pattern)
     gen_update(load_core, loadjs_host, loadjs_new_pattern)
@@ -42,7 +42,7 @@ module UpdateAispeech
   def update_red5
     red5_conf_file_path = "/opt/aispeech/red5-0.8/conf/red5-web.properties"
     red5_old_pattern = Regexp.compile '^audio.region=.+'
-    red5_new_pattern = "audio.region=#{new_host}"
+    red5_new_pattern = "audio.region=#{NEW_HOST}"
 
     gen_update(red5_conf_file_path, red5_old_pattern, red5_new_pattern )
 
@@ -54,7 +54,7 @@ module UpdateAispeech
     http_conf_file = "/etc/httpd/vhosts/api.aispeech.com"
     http_old_servername = Regexp.compile 'ServerName.+'
     http_old_serveralias = Regexp.compile 'ServerAlias.+'
-    http_new_server = "#{new_host}"
+    http_new_server = "#{NEW_HOST}"
 
     gen_update(http_conf_file, http_old_servername, http_new_server)
     gen_update(http_old_serveralias, http_old_servername, http_new_server)
@@ -65,7 +65,7 @@ module UpdateAispeech
   # ## 修改html文件例子中的ip地址
   def update_html
      path = "/var/www/vhosts/test.aispeech.com/aispeechapi-js/v2.0/Examples"
-     new_url = "#{new_host}"
+     new_url = "#{NEW_HOST}"
      shell_cmd = "sed -i -e s/#{old_url}/#{new_url}/ *"
 
      Dir.chdir(path) { shell_cmd }
