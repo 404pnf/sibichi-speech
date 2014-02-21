@@ -65,10 +65,9 @@ module UpdateAispeech
     http_conf_file = "/etc/httpd/vhosts/api.aispeech.com"
     http_old_servername = Regexp.compile 'ServerName.+'
     http_old_serveralias = Regexp.compile 'ServerAlias.+'
-    http_new_server = "#{NEW_HOST}"
 
-    gen_update(http_conf_file, http_old_servername, http_new_server)
-    gen_update(http_conf_file, http_old_serveralias, http_new_server)
+    gen_update(http_conf_file, http_old_servername, "ServerName #{NEW_HOST}")
+    gen_update(http_conf_file, http_old_serveralias, "ServerAlias #{NEW_HOST}")
 
     Dir.chdir(File.dirname http_conf_file) { system('git diff') }
   end
