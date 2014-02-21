@@ -21,7 +21,6 @@ module UpdateAispeech
   # 81 httpa端口，http接入方式需要
   # # 443、5080 rtmp接入需要
 
-
   # ## 暴露出来的额命令
   def update_all
     update_loadjs
@@ -47,9 +46,8 @@ module UpdateAispeech
     gen_update(load_core, loadjs_host, loadjs_new_pattern)
     gen_update(load_core, loadjs_monitorUrl, loadjs_new_pattern)
 
-    Dir.chdir(File.dirname load_core) { git diff }
+    Dir.chdir(File.dirname load_core) { system('git diff') }
   end
-
 
   # ## 修改red5的配置文件
   def update_red5
@@ -59,7 +57,7 @@ module UpdateAispeech
 
     gen_update(red5_conf_file_path, red5_old_pattern, red5_new_pattern )
 
-    Dir.chdir(File.dirname red5_conf_file_path) { git diff }
+    Dir.chdir(File.dirname red5_conf_file_path) {system('git diff') }
   end
 
   # ## 修改httpd的conf
@@ -72,7 +70,7 @@ module UpdateAispeech
     gen_update(http_conf_file, http_old_servername, http_new_server)
     gen_update(http_old_serveralias, http_old_servername, http_new_server)
 
-    Dir.chdir(File.dirname http_conf_file) { git diff }
+    Dir.chdir(File.dirname http_conf_file) { system('git diff') }
   end
 
   # ## 修改html文件例子中的ip地址
@@ -83,7 +81,7 @@ module UpdateAispeech
 
      Dir.chdir(path) { shell_cmd }
 
-     Dir.chdir(path) { git diff }
+     Dir.chdir(path) { system('git diff') }
 
   end
 
