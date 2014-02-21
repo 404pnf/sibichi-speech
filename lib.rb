@@ -68,7 +68,7 @@ module UpdateAispeech
     http_new_server = "#{NEW_HOST}"
 
     gen_update(http_conf_file, http_old_servername, http_new_server)
-    gen_update(http_old_serveralias, http_old_servername, http_new_server)
+    gen_update(http_conf_file, http_old_serveralias, http_new_server)
 
     Dir.chdir(File.dirname http_conf_file) { system('git diff') }
   end
