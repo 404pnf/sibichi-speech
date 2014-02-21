@@ -1,5 +1,7 @@
 module UpdateAispeech
 
+  extend UpdateAispeech
+
   # ## 新域名或者ip地址
   # 不要删除双引号
   # 不要写 'http://'
@@ -19,6 +21,17 @@ module UpdateAispeech
   # 81 httpa端口，http接入方式需要
   # # 443、5080 rtmp接入需要
 
+
+  # ## 暴露出来的额命令
+  def update_all
+    update_loadjs
+    update_red5
+    update_httpd
+    #update_html
+    restart_service
+  end
+  module_function :update_all
+
   # ## 此方法用来生成后面的方法
   def gen_update(file, old, new)
     File.write(file, File.read(file).sub(old, new))
@@ -32,7 +45,7 @@ module UpdateAispeech
     loadjs_new_pattern = "http://#{NEW_HOST}"
 
     gen_update(load_core, loadjs_host, loadjs_new_pattern)
-    gen_update(load_core, loadjs_host, loadjs_new_pattern)
+    gen_update(load_core, loadjs_monitorUrl, loadjs_new_pattern)
 
     Dir.chdir(File.dirname load_core) { git diff }
   end
@@ -79,16 +92,5 @@ module UpdateAispeech
     system('/etc/init.d/httpd restart')
     system('/etc/init.d/red5-0.8 restart')
   end
-
-  # ## 暴露出来的额命令
-  def update_all
-    update_loadjs
-    update_red5
-    update_httpd
-    #update_html
-    restart_service
-  end
-
-  module_function :update_all
 
 end
