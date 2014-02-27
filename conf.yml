@@ -1,0 +1,8 @@
+---
+ip:	"129.0.0.1"
+servername:   "foo.com"
+serveralias:  "129.0.0.1"
+gateway:      "129"
+netmask:      "129"
+dns:          "129"
+
