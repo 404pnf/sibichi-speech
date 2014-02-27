@@ -1,27 +1,42 @@
 #vim /etc/rc.local
 
-# 修改apache配置文件
-# 修改 ServerName
+clear
+echo '即将修改apache配置文件'
+echo '请修改 ServerName 到机器的ip地址'
+sleep 5
+clear
 vim +2 /etc/httpd/vhosts/api.aispeech.com
 
-# 修改 audio.region 的ip
+echo '即将修改 red5 的配置文件'
+echo '请修改 audio.region 的 ip 地址'
+sleep 5
+clear
 vim +21 /opt/aispeech/red5-0.8/conf/red5-web.properties
 
-# 修改aispeech.monnitorUrl 和 aispeech.host 的地址
-#  46     aispeech.monitorUrl = "http://log.aispeech.com/sdk-monitor/sdklog";
-#  47     aispeech.apiVersion = "v2.0";
-#  48     aispeech.host = aispeech.host || "http://10.12.7.44/aispeechapi-js/" + ai    speech.apiVersion;
-# 将 log.aispeech.com 替换为 机器的ip
-# 将 10.12.7.44 替换为 机器的ip
-
+echo '即将修改load_core.js文件'
+echo ''
+echo '将 aispeech.monitorUrl = "http://log.aispeech.com/sdk-monitor/sdklog";'
+echo '中的log.aispeech.com 替换为 机器的ip'
+echo ''
+echo '将 aispeech.host = aispeech.host || "http://10.12.7.44/aispeechapi-js/" + aispeech.apiVersion;'
+echo '中的 10.12.7.44 替换为 机器的ip'
+sleep 10
+clear
 vim +46 /var/www/vhosts/api.aispeech.com/aispeechapi-js/v2.0/load_core.js
 
-# 配置机器网卡
+echo  '配置机器网卡'
+sleep 3
 vim /etc/sysconfig/network-scripts/ifcfg-eth0
-# 配置机器dns
+
+echo  '配置机器dns'
 vim /etc/resolv.conf
 
-# 重启修改后的服务
+echo '重启修改后的服务啦'
+echo '你的工作完成了 ：） '
+sleep 3
 /etc/init.d/httpd restart
 /etc/iptables stop
 /etc/init.d/red5-0.8 restart
+echo 'bye'
+sleep 2
+clear
